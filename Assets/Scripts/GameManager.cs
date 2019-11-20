@@ -1,13 +1,13 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     //VARIABLES
-    protected int highScore;
-    protected int currentScore;
-    public bool isPaused;
+    [HideInInspector]public int highScore;
+    public bool isPaused = false;
 
     //a singleton is an instance that keeps this script and everything inside this script
     //saved throughout the game.
@@ -29,21 +29,28 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public void FixedUpdate()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) )
+        if (isPaused)
         {
-            if (isPaused)
-            {
-                isPaused = false;
-                Time.timeScale = 0;
-            }
-            else
-            {
-                isPaused = true;
-                Time.timeScale = 1;
-            }
+            Time.timeScale = 0;
         }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
+
+    public void CompareScores(int currentScore)
+    {
+        if (highScore == 0)
+            highScore = currentScore;
+        else if (highScore < currentScore)
+            highScore = currentScore;
+    }
+    public int GetHighScore()
+    {
+        return highScore;
     }
 
 
