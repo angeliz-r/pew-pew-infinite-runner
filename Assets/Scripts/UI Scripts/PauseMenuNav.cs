@@ -16,7 +16,7 @@ public class PauseMenuNav : MonoBehaviour
             GameManager.instance.isPaused = false;
             Back();
         }
-        if (GameManager.instance.isPaused)
+        else
         {
             GameManager.instance.isPaused = true;
             OpenPauseMenu();

@@ -2,12 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-    //VARIABLES
-    [HideInInspector]public int highScore;
-    public bool isPaused = false;
+    [Header("Score")]
+    public PlayerData data;
+    public int highScore;
+    [Header("Name Data")]
+    public TMP_InputField userName;
+    public string playerName;
+
+    [HideInInspector]public bool isPaused = false;
+    private Scene scene;
+   
 
     //a singleton is an instance that keeps this script and everything inside this script
     //saved throughout the game.
@@ -26,11 +34,37 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         isPaused = false;
+        data = new PlayerData();
+        playerName = "";
+        SaveManager.instance.Load();
+
+        if (playerName != null)
+        {
+            userName.text = playerName;
+        }
+
+        if (userName == null)
+            userName = GameObject.FindGameObjectWithTag("Input").GetComponent<TMP_InputField>();
     }
     #endregion
 
+    public PlayerData CopyToSaveData()
+    {
+        data.highScore = highScore;
+        data.playerName = playerName;
+        return data;
+    }
+
+    public void LoadFromSaveData (PlayerData data)
+    {
+        highScore = data.highScore;
+        playerName = data.playerName;
+    }
     public void Update()
     {
+        scene = SceneManager.GetActiveScene();
+        if (scene.buildIndex == 0)
+            EnterName();
         if (isPaused)
         {
             Time.timeScale = 0;
@@ -39,6 +73,18 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+    }
+
+    public void EnterName ()
+    {
+       
+        playerName = userName.text;
+        SaveManager.instance.Save();
+    }
+
+    public string GetName()
+    {
+        return playerName;
     }
 
     public void CompareScores(int currentScore)

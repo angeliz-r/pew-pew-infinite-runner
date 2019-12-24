@@ -5,63 +5,67 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    private CharacterController controller;
-
+    public Animator EllenAnim;
     //movement properties
     private Vector3 moveVector;
-    private float speed = 4.0f;
-    private float verticalVelocity = 0.0f;
-    private float gravity = 12.0f;
+    private float speed = 5.0f;
 
+    //jump things
+    private float jumpForce = 2.0f;
+    private Vector3 jump;
+    public bool isGrounded;
+    public Rigidbody rb;
+
+    //death
     public bool isDead = false;
 
-    //get anim duration & other properties from camera motor
-    [SerializeField]private GameObject cameraObj;
-    private CameraMotor cameraMotorScript;
-
-    private float animationDuration;
+    private float animationDuration = 2.0f;
 
     void Awake()
     {
-        controller = GetComponent<CharacterController>();
-        cameraMotorScript = cameraObj.GetComponent<CameraMotor>();
-        animationDuration = cameraMotorScript.getAnimDuration();
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
+        rb = this.GetComponent<Rigidbody>();
+        
     }
 
     void Update()
     {
+        EllenAnim.Play("RunForward");
+        //restrict
+        if (Time.timeSinceLevelLoad < animationDuration)
+        {
+           rb.velocity = Vector3.forward * speed * Time.deltaTime;
+            return; //exit update to let camera anim play
+        }
         if (isDead)
         {
             return;
         }
-        if (Time.time < animationDuration)
+        MovementUpdate();
+    }
+
+    public void MovementUpdate()
+    {
+        if (Time.timeSinceLevelLoad > animationDuration)
         {
-            controller.Move(Vector3.forward * speed * Time.deltaTime);
-            return; //exit update to let camera anim play
+           // EllenAnim.Play("RunForward");
+            moveVector.x = Input.GetAxis("Horizontal");
+            moveVector.z = Vector3.forward.z;
+            //jump controls
+            if (isGrounded && Input.GetButtonDown("Jump")) 
+            {
+                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+                isGrounded = false;
+                //EllenAnim.Play("JumpTK");
+            }
+
+            rb.MovePosition(rb.position + moveVector * speed * Time.fixedDeltaTime);
         }
+    }
 
-        //reset vector per frame
-        moveVector = Vector3.zero;
-
-        //x - left & right movement
-        moveVector.x = Input.GetAxisRaw("Horizontal") * speed; //control character w/ standard input keys
-
-        if (controller.isGrounded) //check if player is on the ground
-        {
-            verticalVelocity = -0.5f;
-        }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime; //fall if not grounded
-        }
-
-        //y - gravity
-        moveVector.y = verticalVelocity;
-
-        //z - move forward constantly
-        moveVector.z = speed; 
-
-        controller.Move(moveVector * Time.deltaTime);
+    private void OnCollisionStay(Collision collision)
+    {
+        isGrounded = true;
     }
 
     public void SetSpeed(int modifier)
@@ -69,15 +73,17 @@ public class PlayerMotor : MonoBehaviour
         speed = 6.0f + modifier;
     }
 
-    private void OnControllerColliderHit (ControllerColliderHit hit)
+    #region Player Death
+    private void OnTriggerExit(Collider other)
     {
-       if (hit.point.z > transform.position.z + controller.radius)
+        if (other.gameObject.tag == "OutZone")
         {
-           Death();
+            Death();
         }
     }
     public void Death()
     {
         isDead = true;
     }
+    #endregion
 }

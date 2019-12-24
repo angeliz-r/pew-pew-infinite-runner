@@ -13,7 +13,7 @@ public class TileManager : MonoBehaviour
 
     private float spawnZ;
     private float tileLength;
-    private int tilesOnScreen = 10;
+    private int tilesOnScreen = 16;
     private float safeZone;
     private int lastPrefabIndex = 0;
 
@@ -35,7 +35,7 @@ public class TileManager : MonoBehaviour
         //initialize first so player won't fall without anyone catching them
         for (int i = 0; i < tilesOnScreen; i++)
         {
-            if (i < 8)
+            if (i < 13)
                 SpawnTile(0);
             else
                 SpawnTile();

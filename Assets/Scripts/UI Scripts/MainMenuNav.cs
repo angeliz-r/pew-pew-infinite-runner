@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class MainMenuNav : MonoBehaviour
 {
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject Options;
     [SerializeField] private GameObject Credits;
     [SerializeField] private GameObject Exit;
+    [SerializeField] private TextMeshProUGUI ErrorMessage;
+    [SerializeField] private TMP_InputField userName;
+    [SerializeField] private GameObject warn;
 
     public void OpenOptions()
     {
@@ -47,7 +50,17 @@ public class MainMenuNav : MonoBehaviour
 
     public void OpenGameScene()
     {
-        Loader.Load(Loader.Scene.Game);
+        if (userName.text != "")
+        {
+            warn.SetActive(false);
+            Loader.Load(Loader.Scene.Game);
+        }
+        else
+        {
+            ErrorMessage.text = "Enter a name first!";
+            warn.SetActive(true);
+        }
+            
     }
 
     public void ExitGame()

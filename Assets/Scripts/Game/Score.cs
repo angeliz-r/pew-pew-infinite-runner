@@ -71,6 +71,7 @@ public class Score : MonoBehaviour
         GameManager.instance.CompareScores((int)currentScore);
         highScoreText.text = GameManager.instance.GetHighScore().ToString();
         highScoreRetryText.text = GameManager.instance.GetHighScore().ToString();
+        SaveManager.instance.Save();
     }
 
     private void CheckForHighScore()
