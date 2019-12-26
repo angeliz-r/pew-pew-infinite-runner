@@ -18,8 +18,6 @@ public class MainMenuNav : MonoBehaviour
         Options.SetActive(true);
 
         MainMenu.SetActive(false);
-        Exit.SetActive(false);
-        Credits.SetActive(false);
     }
 
     public void OpenCredits()
@@ -43,9 +41,7 @@ public class MainMenuNav : MonoBehaviour
     public void OpenMainMenu()
     {
         MainMenu.SetActive(true);
-        Credits.SetActive(false);
         Options.SetActive(false);
-        Exit.SetActive(false);
     }
 
     public void OpenGameScene()

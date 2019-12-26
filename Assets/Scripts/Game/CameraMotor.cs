@@ -28,7 +28,7 @@ public class CameraMotor : MonoBehaviour
         //keep camera centered;
         moveVector.x = 0;
         //restrict up and down movement for smoother camera
-        moveVector.y = Mathf.Clamp(moveVector.y, 3, 5);
+        moveVector.y = Mathf.Clamp(moveVector.y, 3, -15);
         
         if (transition > 1.0f) //move normal
         {

@@ -42,9 +42,6 @@ public class GameManager : MonoBehaviour
         {
             userName.text = playerName;
         }
-
-        if (userName == null)
-            userName = GameObject.FindGameObjectWithTag("Input").GetComponent<TMP_InputField>();
     }
     #endregion
 
@@ -64,7 +61,13 @@ public class GameManager : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         if (scene.buildIndex == 0)
+        {
+            if (userName == null)
+                userName = GameObject.FindGameObjectWithTag("Input").GetComponent<TMP_InputField>();
+
             EnterName();
+        }
+            
         if (isPaused)
         {
             Time.timeScale = 0;

@@ -54,12 +54,12 @@ public class Score : MonoBehaviour
         }
     }
 
-    private void LevelUp ()
+    private void LevelUp()
     {
         //if difficulty maxed out just return the same
         if (difficultyLevel == maxDifficultyLevel)
             return;
-        
+
         scoreToNextLevel *= 2;
         difficultyLevel++;
         playerScript.SetSpeed(difficultyLevel);
@@ -68,9 +68,9 @@ public class Score : MonoBehaviour
     private void PlayerDeath()
     {
         menuScript.RetryGame();
+        highScoreRetryText.text = ((int)currentScore).ToString();
         GameManager.instance.CompareScores((int)currentScore);
         highScoreText.text = GameManager.instance.GetHighScore().ToString();
-        highScoreRetryText.text = GameManager.instance.GetHighScore().ToString();
         SaveManager.instance.Save();
     }
 

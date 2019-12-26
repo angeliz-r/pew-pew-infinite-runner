@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    public Animator EllenAnim;
     //movement properties
     private Vector3 moveVector;
     private float speed = 5.0f;
@@ -30,7 +29,6 @@ public class PlayerMotor : MonoBehaviour
 
     void Update()
     {
-        EllenAnim.Play("RunForward");
         //restrict
         if (Time.timeSinceLevelLoad < animationDuration)
         {
@@ -48,7 +46,6 @@ public class PlayerMotor : MonoBehaviour
     {
         if (Time.timeSinceLevelLoad > animationDuration)
         {
-           // EllenAnim.Play("RunForward");
             moveVector.x = Input.GetAxis("Horizontal");
             moveVector.z = Vector3.forward.z;
             //jump controls
@@ -56,7 +53,6 @@ public class PlayerMotor : MonoBehaviour
             {
                 rb.AddForce(jump * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
-                //EllenAnim.Play("JumpTK");
             }
 
             rb.MovePosition(rb.position + moveVector * speed * Time.fixedDeltaTime);
