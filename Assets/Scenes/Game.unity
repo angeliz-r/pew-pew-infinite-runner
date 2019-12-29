@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 723130436}
-  highScoreText: {fileID: 2066747227}
+  highScoreText: {fileID: 286620556}
   highScoreRetryText: {fileID: 1579655546}
   player: {fileID: 546302581}
 --- !u!1 &20839900
@@ -1392,7 +1392,7 @@ GameObject:
   - component: {fileID: 591341598}
   - component: {fileID: 591341597}
   m_Layer: 5
-  m_Name: HighScoreName
+  m_Name: YourScoreName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 591341595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a1e9ed0084d4d47b81703d06d4c66a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fbbd2af075b8a0438445340f2adef20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 591341598}
@@ -3828,7 +3828,7 @@ GameObject:
   - component: {fileID: 1579655547}
   - component: {fileID: 1579655546}
   m_Layer: 5
-  m_Name: HighScoreNum
+  m_Name: YourScoreNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4131,7 +4131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2013718857}
   - component: {fileID: 2013718856}
-  - component: {fileID: 2013718855}
   - component: {fileID: 2013718858}
   m_Layer: 0
   m_Name: Main Camera
@@ -4140,14 +4139,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2013718855
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013718854}
-  m_Enabled: 1
 --- !u!20 &2013718856
 Camera:
   m_ObjectHideFlags: 0

@@ -6,4 +6,5 @@ public class PlayerData
 {
     public string playerName = "";
     public int highScore = 0;
+    public string HSPlayer = "";
 }

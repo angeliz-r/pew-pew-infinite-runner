@@ -7,7 +7,7 @@ public class PlayerMotor : MonoBehaviour
 {
     //movement properties
     private Vector3 moveVector;
-    private float speed = 5.0f;
+    private float speed = 7.0f;
 
     //jump things
     private float jumpForce = 2.0f;

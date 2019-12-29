@@ -8,6 +8,6 @@ public class DisplayHighScoreName : MonoBehaviour
 
     void Start()
     {
-        text.text = GameManager.instance.GetName();
+        text.text = GameManager.instance.GetHSName();
     }
 }

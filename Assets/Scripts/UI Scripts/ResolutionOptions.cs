@@ -47,4 +47,16 @@ public class ResolutionOptions : MonoBehaviour
     {
         mixer.SetFloat("MasterVol", x);
     }
+
+    public void ToggleVolume (bool x)
+    {
+        if (x)
+        {
+            mixer.SetFloat("MasterVol", 0f);
+        }
+        else
+        {
+            mixer.SetFloat("MasterVol", -80f);
+        }
+    }
 }

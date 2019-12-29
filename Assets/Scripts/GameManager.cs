@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     [Header("Score")]
     public PlayerData data;
     public int highScore;
+    private int GMcurrentScore;
     [Header("Name Data")]
     public TMP_InputField userName;
     public string playerName;
+    public string HSplayer;
 
     [HideInInspector]public bool isPaused = false;
     private Scene scene;
@@ -36,9 +38,10 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         data = new PlayerData();
         playerName = "";
+        HSplayer = "";
         SaveManager.instance.Load();
 
-        if (playerName != null)
+        if (userName.text == null)
         {
             userName.text = playerName;
         }
@@ -49,6 +52,7 @@ public class GameManager : MonoBehaviour
     {
         data.highScore = highScore;
         data.playerName = playerName;
+        data.HSPlayer = HSplayer;
         return data;
     }
 
@@ -56,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         highScore = data.highScore;
         playerName = data.playerName;
+        HSplayer = data.HSPlayer;
     }
     public void Update()
     {
@@ -64,8 +69,8 @@ public class GameManager : MonoBehaviour
         {
             if (userName == null)
                 userName = GameObject.FindGameObjectWithTag("Input").GetComponent<TMP_InputField>();
-
             EnterName();
+
         }
             
         if (isPaused)
@@ -80,7 +85,6 @@ public class GameManager : MonoBehaviour
 
     public void EnterName ()
     {
-       
         playerName = userName.text;
         SaveManager.instance.Save();
     }
@@ -90,8 +94,27 @@ public class GameManager : MonoBehaviour
         return playerName;
     }
 
+    public string GetHSName()
+    {
+        if (highScore < GMcurrentScore)
+        {
+            HSplayer = playerName;
+            return HSplayer;
+        }
+        if (HSplayer == "")
+        {
+            HSplayer = playerName;
+            return HSplayer;
+        }
+        else
+        {
+            return HSplayer;
+        }
+    }
+
     public void CompareScores(int currentScore)
     {
+        GMcurrentScore = currentScore;
         if (highScore == 0)
             highScore = currentScore;
         else if (highScore < currentScore)
