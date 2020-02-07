@@ -10,10 +10,21 @@ public class PlayerMotor : MonoBehaviour
     private float speed = 7.0f;
 
     //jump things
-    private float jumpForce = 2.0f;
+    private float jumpForce = 3.0f;
     private Vector3 jump;
     public bool isGrounded;
-    public Rigidbody rb;
+
+    [HideInInspector]public Rigidbody rb;
+
+    public Swipe swipeScript;
+    private Vector3 moveLeft;
+    private Vector3 moveRight;
+    private bool isRight;
+
+    private Vector3 startPos;
+    private Vector3 endPos;
+    private float moveTime = 0f;
+    private float moveDuration = 0.1f;
 
     //death
     public bool isDead = false;
@@ -23,8 +34,11 @@ public class PlayerMotor : MonoBehaviour
     void Awake()
     {
         jump = new Vector3(0.0f, 2.0f, 0.0f);
+        moveLeft = new Vector3(-0.4f, 0.0f, 0.0f);
+        moveRight = new Vector3(0.4f, 0.0f, 0.0f);
+        isRight = false;
         rb = this.GetComponent<Rigidbody>();
-        
+        swipeScript = this.GetComponent<Swipe>();
     }
 
     void Update()
@@ -39,6 +53,10 @@ public class PlayerMotor : MonoBehaviour
         {
             return;
         }
+    }
+
+    private void FixedUpdate()
+    {
         MovementUpdate();
     }
 
@@ -46,19 +64,68 @@ public class PlayerMotor : MonoBehaviour
     {
         if (Time.timeSinceLevelLoad > animationDuration)
         {
-            moveVector.x = Input.GetAxis("Horizontal");
-            moveVector.z = Vector3.forward.z;
-            //jump controls
-            if (isGrounded && Input.GetButtonDown("Jump")) 
+            //jump control
+            if (isGrounded && swipeScript.SwipeUp == true)
             {
                 rb.AddForce(jump * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
             }
 
+            if (swipeScript.SwipeRight)
+            {
+                StartCoroutine(Move("right"));
+            }
+            else if (swipeScript.SwipeLeft)
+            {
+                StartCoroutine(Move("left"));
+            }
+            else
+            {
+                StopCoroutine(Move("left"));
+                StopCoroutine(Move("right"));
+            }
+            //tilt controls that didnt work lmao
+            //moveVector.x = Input.acceleration.x * (speed - 1) * Time.fixedDeltaTime;
+            //moveVector = new Vector3(Mathf.Clamp(transform.position.x, -4f, 4f), moveVector.y);
+            //rb.velocity = new Vector3(moveVector.x, moveVector.y);
+
+            moveVector.z = Vector3.forward.z;
             rb.MovePosition(rb.position + moveVector * speed * Time.fixedDeltaTime);
+           
+
         }
     }
 
+    private IEnumerator Move (string dir)
+    {
+        switch (dir)
+        {
+            case "left":
+                moveTime = 0f;
+                startPos = transform.position;
+                endPos = new Vector3(startPos.x - .1f, transform.position.y, transform.position.z);
+
+                while (moveTime < moveDuration)
+                {
+                    moveTime += Time.deltaTime;
+                    transform.position = Vector2.Lerp(startPos, endPos, moveTime / moveDuration);
+                    yield return null;
+                }
+                break;
+            case "right":
+                moveTime = 0f;
+                startPos = transform.position;
+                endPos = new Vector3(startPos.x + .1f, transform.position.y, transform.position.z);
+
+                while (moveTime < moveDuration)
+                {
+                    moveTime += Time.deltaTime;
+                    transform.position = Vector2.Lerp(startPos, endPos, moveTime / moveDuration);
+                }
+                break;
+
+        }
+    }
     private void OnCollisionStay(Collision collision)
     {
         isGrounded = true;
