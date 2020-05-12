@@ -6,6 +6,7 @@ TagManager:
   tags:
   - OutZone
   - Input
+  - Bullet
   layers:
   - Default
   - TransparentFX
