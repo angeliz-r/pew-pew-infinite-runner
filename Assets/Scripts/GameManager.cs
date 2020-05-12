@@ -11,16 +11,14 @@ public class GameManager : MonoBehaviour
     public int highScore;
     private int GMcurrentScore;
     [Header("Name Data")]
-    public TMP_InputField userName;
-    public string playerName;
-    public string HSplayer;
+    //public TMP_InputField userName;
+    //public string playerName;
+    ////public string HSplayer;
 
     [HideInInspector]public bool isPaused = false;
     private Scene scene;
    
 
-    //a singleton is an instance that keeps this script and everything inside this script
-    //saved throughout the game.
     #region SINGLETON
     public static GameManager instance;
 
@@ -37,41 +35,41 @@ public class GameManager : MonoBehaviour
         }
         isPaused = false;
         data = new PlayerData();
-        playerName = "";
-        HSplayer = "";
+        //playerName = "";
+        //HSplayer = "";
         SaveManager.instance.Load();
 
-        if (userName.text == null)
-        {
-            userName.text = playerName;
-        }
+        //if (userName.text == null)
+        //{
+        //    userName.text = playerName;
+        //}
     }
     #endregion
 
     public PlayerData CopyToSaveData()
     {
         data.highScore = highScore;
-        data.playerName = playerName;
-        data.HSPlayer = HSplayer;
+        //data.playerName = playerName;
+        //data.HSPlayer = HSplayer;
         return data;
     }
 
     public void LoadFromSaveData (PlayerData data)
     {
         highScore = data.highScore;
-        playerName = data.playerName;
-        HSplayer = data.HSPlayer;
+        //playerName = data.playerName;
+        //HSplayer = data.HSPlayer;
     }
     public void Update()
     {
-        scene = SceneManager.GetActiveScene();
-        if (scene.buildIndex == 0)
-        {
-            if (userName == null)
-                userName = GameObject.FindGameObjectWithTag("Input").GetComponent<TMP_InputField>();
-            EnterName();
+        //scene = SceneManager.GetActiveScene();
+        //if (scene.buildIndex == 0)
+        //{
+        //    if (userName == null)
+        //        userName = GameObject.FindGameObjectWithTag("Input").GetComponent<TMP_InputField>();
+        //    EnterName();
 
-        }
+        //}
             
         if (isPaused)
         {
@@ -83,34 +81,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EnterName ()
-    {
-        playerName = userName.text;
-        SaveManager.instance.Save();
-    }
+    //public void EnterName ()
+    //{
+    //    playerName = userName.text;
+    //    SaveManager.instance.Save();
+    //}
 
-    public string GetName()
-    {
-        return playerName;
-    }
+    //public string GetName()
+    //{
+    //    return playerName;
+    //}
 
-    public string GetHSName()
-    {
-        if (highScore < GMcurrentScore)
-        {
-            HSplayer = playerName;
-            return HSplayer;
-        }
-        if (HSplayer == "")
-        {
-            HSplayer = playerName;
-            return HSplayer;
-        }
-        else
-        {
-            return HSplayer;
-        }
-    }
+    //public string GetHSName()
+    //{
+    //    if (highScore < GMcurrentScore)
+    //    {
+    //        HSplayer = playerName;
+    //        return HSplayer;
+    //    }
+    //    if (HSplayer == "")
+    //    {
+    //        HSplayer = playerName;
+    //        return HSplayer;
+    //    }
+    //    else
+    //    {
+    //        return HSplayer;
+    //    }
+    //}
 
     public void CompareScores(int currentScore)
     {

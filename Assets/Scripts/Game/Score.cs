@@ -12,6 +12,7 @@ public class Score : MonoBehaviour
     [Header("Player")]
     public GameObject player;
     private PlayerMotor playerScript;
+
     //score
     protected float currentScore = 0;
     protected float highScore = 0;

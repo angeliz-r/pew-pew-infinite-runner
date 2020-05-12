@@ -8,6 +8,7 @@ public class PauseMenuNav : MonoBehaviour
     [SerializeField] private GameObject PauseContent;
     [SerializeField] private GameObject ExitContent;
     [SerializeField] private GameObject RetryMenu;
+    [SerializeField] private GameObject ControlButtons;
 
     public void PauseGame()
     {
@@ -42,6 +43,7 @@ public class PauseMenuNav : MonoBehaviour
         PauseContent.SetActive(false);
         ExitContent.SetActive(false);
         RetryMenu.SetActive(true);
+        ControlButtons.SetActive(false);
     }
     public void OpenPauseMenu()
     {
@@ -49,6 +51,7 @@ public class PauseMenuNav : MonoBehaviour
         PauseContent.SetActive(true);
         ExitContent.SetActive(false);
         RetryMenu.SetActive(false);
+        ControlButtons.SetActive(false);
     }
     public void OpenExitMenu()
     {
@@ -64,6 +67,7 @@ public class PauseMenuNav : MonoBehaviour
         PauseContent.SetActive(false);
         ExitContent.SetActive(false);
         RetryMenu.SetActive(false);
+        ControlButtons.SetActive(true);
     }
     public void OpenMainMenuScene()
     {
