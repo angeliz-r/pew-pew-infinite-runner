@@ -36,23 +36,27 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerScript.isDead)
+        if (Time.timeSinceLevelLoad > 2.0f)
         {
-            if (!callOnce)
+            if (playerScript.isDead)
             {
-                PlayerDeath();
-                callOnce = true;
+                if (!callOnce)
+                {
+                    PlayerDeath();
+                    callOnce = true;
+                }
+            }
+            if (!playerScript.isDead)
+            {
+                if (currentScore >= scoreToNextLevel)
+                {
+                    LevelUp();
+                }
+                currentScore += Time.deltaTime * difficultyLevel;
+                scoreText.text = ((int)currentScore).ToString();
             }
         }
-        if (!playerScript.isDead)
-        {
-            if (currentScore >= scoreToNextLevel)
-            {
-                LevelUp();
-            }
-            currentScore += Time.deltaTime * difficultyLevel;
-            scoreText.text = ((int)currentScore).ToString();
-        }
+
     }
 
     private void LevelUp()

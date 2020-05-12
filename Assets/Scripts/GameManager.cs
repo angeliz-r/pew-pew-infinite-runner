@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public PlayerData data;
     public int highScore;
     private int GMcurrentScore;
-    [Header("Name Data")]
+
+    //[Header("Name Data")]
     //public TMP_InputField userName;
     //public string playerName;
     ////public string HSplayer;

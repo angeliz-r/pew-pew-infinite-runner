@@ -5,30 +5,31 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+    [SerializeField] private GameObject btnControls;
+
     //movement properties
+    private CharacterController controller;
     private Vector3 moveVector;
-    private float speed ;
+    private Vector3 targetPos;
+
+
+    private int desiredLane = 1; //left = 0, middle = 1, right = 2
+    private float speed;
+    private const float TURN_SPEED = .6f;
+    private const float LANE_DIST = 1.2f;
 
     //jump things
     //private float jumpForce = 3.0f;
     //private Vector3 jump;
-    public bool isGrounded;
+
+    private float verticalVelocity;
+    private float gravity = 12.0f;
 
     [HideInInspector]public Rigidbody rb;
 
     //public Swipe swipeScript;
-    //private Vector3 moveLeft;
-    //private Vector3 moveRight;
 
     private bool isRight;
-    private bool isCenter;
-    private int countR;
-    private int countL;
-
-    //private Vector3 startPos;
-    //private Vector3 endPos;
-    //private float moveTime = 0f;
-    //private float moveDuration = 0.1f;
 
     //death
     public bool isDead = false;
@@ -37,14 +38,9 @@ public class PlayerMotor : MonoBehaviour
 
     void Awake()
     {
-        //jump = new Vector3(0.0f, 2.0f, 0.0f);
-        //moveLeft = new Vector3(-.5f, 0.0f, 0.0f);
-        //moveRight = new Vector3(1f, 0.0f, 0.0f);
         isRight = false;
-        isCenter = true;
-        countL = 0;
-        countR = 0;
-        rb = this.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
         //swipeScript = this.GetComponent<Swipe>();
     }
 
@@ -53,151 +49,152 @@ public class PlayerMotor : MonoBehaviour
         //restrict
         if (Time.timeSinceLevelLoad < animationDuration)
         {
-           rb.velocity = Vector3.forward * speed * Time.deltaTime;
+            btnControls.SetActive(false);
+            moveVector = Vector3.zero;
+            moveVector.y = .5f;
+            targetPos = transform.position.z * Vector3.forward;
             return; //exit update to let camera anim play
+        }
+        else if (Time.timeSinceLevelLoad > animationDuration)
+        {
+            Movement();
+            btnControls.SetActive(true);
         }
         if (isDead)
         {
             return;
         }
-    }
 
-    private void FixedUpdate()
-    {
-        Movement();
     }
 
     public void Movement()
     {
-        if (Time.timeSinceLevelLoad > animationDuration)
+        #region old code
+        ////jump control
+        //if (isGrounded && swipeScript.SwipeUp == true)
+        //{
+        //    rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+        //    isGrounded = false;
+        //}
+
+        //shitty swipe controls
+        //if (swipeScript.SwipeRight)
+        //{
+        //    StartCoroutine(Move("right"));
+        //}
+        //else if (swipeScript.SwipeLeft)
+        //{
+        //    StartCoroutine(Move("left"));
+        //}
+        //else
+        //{
+        //    StopCoroutine(Move("left"));
+        //    StopCoroutine(Move("right"));
+        //}
+
+        //tilt controls that didnt work lmao
+        //moveVector.x = Input.acceleration.x * (speed - 1) * Time.fixedDeltaTime;
+        //moveVector = new Vector3(Mathf.Clamp(transform.position.x, -4f, 4f), moveVector.y);
+        //rb.velocity = new Vector3(moveVector.x, moveVector.y);
+
+        //old shit
+        //moveVector.z = Vector3.forward.z;
+        //rb.MovePosition(rb.position + moveVector * speed * Time.fixedDeltaTime);
+        #endregion
+        //determine where to move
+         
+        //move forward
+        targetPos = transform.position.z * Vector3.forward;
+
+        //move L or R
+        if (desiredLane == 0)
         {
-
-            ////jump control
-            //if (isGrounded && swipeScript.SwipeUp == true)
-            //{
-            //    rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            //    isGrounded = false;
-            //}
-
-            //shitty swipe controls
-            //if (swipeScript.SwipeRight)
-            //{
-            //    StartCoroutine(Move("right"));
-            //}
-            //else if (swipeScript.SwipeLeft)
-            //{
-            //    StartCoroutine(Move("left"));
-            //}
-            //else
-            //{
-            //    StopCoroutine(Move("left"));
-            //    StopCoroutine(Move("right"));
-            //}
-
-            //tilt controls that didnt work lmao
-            //moveVector.x = Input.acceleration.x * (speed - 1) * Time.fixedDeltaTime;
-            //moveVector = new Vector3(Mathf.Clamp(transform.position.x, -4f, 4f), moveVector.y);
-            //rb.velocity = new Vector3(moveVector.x, moveVector.y);
-
-            moveVector.z = Vector3.forward.z;
-            rb.MovePosition(rb.position + moveVector * speed * Time.fixedDeltaTime);
-           
-
+            targetPos += Vector3.left * LANE_DIST;
         }
+        else if (desiredLane == 2)
+        {
+            targetPos += Vector3.right * LANE_DIST;
+        }
+        //move smoothly
+        moveVector = Vector3.zero;
+        moveVector.x = (targetPos - transform.position).normalized.x * speed;
+
+        //check gravity
+        if (IsGrounded())
+        {
+            verticalVelocity = -0.1f;
+
+            //jump can be in here
+            //input button
+                //verticalVelocity = jumpForce;
+        }
+        else
+        {
+            verticalVelocity -= (gravity * Time.deltaTime);
+
+            //fastfall can be here
+            //input button
+                //verticalVelocity = -jumpForce;
+        }
+        moveVector.y =verticalVelocity;
+        moveVector.z = speed;
+
+
+
+        //move player
+        controller.Move(moveVector * Time.deltaTime);
+
+        //rotate when turning
+        Vector3 dir = controller.velocity;
+        if (dir != Vector3.zero)
+        {
+            dir.y = 0;
+            transform.forward = Vector3.Lerp(transform.forward, dir, TURN_SPEED);
+        }
+
+    }
+
+    void MoveLR()
+    {
+        desiredLane += (isRight) ? 1 : -1;
+        desiredLane = Mathf.Clamp(desiredLane, 0, 2);
     }
 
     public void MoveLeft()
     {
-        if (isCenter) //move left
-        {
-            this.transform.Translate(Vector3.left);
-            isRight = true;
-            isCenter = false;
-            Debug.Log("move left: " + this.transform.position);
-        }
-        else if (!isRight && !isCenter && countL != 1) //can move left twice
-        {
-            ++countL;
-            this.transform.Translate(Vector3.left);
-            Debug.Log("move left fr Center: " + this.transform.position);
-            Debug.Log("countL: " + countL) ;
-            isCenter = true;
-        }
-        else if (countL == 1)
-        {
-            countL = 0;
-            this.transform.Translate(Vector3.left);
-            Debug.Log("move left countL: " + this.transform.position);
-            isRight = true;
-
-        }
+        isRight = false;
+        MoveLR();
 
     }
 
     public void MoveRight()
     {
-        if (isCenter) //move right
-        {
-            this.transform.Translate(Vector3.right);
-            isRight = false;
-            isCenter = false;
-
-            Debug.Log("move right: " + this.transform.position);
-        }
-        else if (isRight && !isCenter && countR != 1) //can move right twice
-        {
-            ++countR;
-            this.transform.Translate(Vector3.right);
-            Debug.Log("move right fr center: " + this.transform.position);
-            Debug.Log("countR: " + countR);
-            isCenter = true;
-        }
-        else if (countR == 1)
-        {
-            countR = 0;
-            this.transform.Translate(Vector3.right);
-            Debug.Log("move right countR: " + this.transform.position);
-            isRight = false;
-        }
-
+        isRight = true;
+        MoveLR();
     }
 
-    //shitty swipe controls pt 2
-    //private IEnumerator Move (string dir)
+    //private void OnCollisionStay(Collision collision)
     //{
-    //    switch (dir)
-    //    {
-    //        case "left":
-    //            moveTime = 0f;
-    //            startPos = transform.position;
-    //            endPos = new Vector3(startPos.x - .1f, transform.position.y, transform.position.z);
-
-    //            while (moveTime < moveDuration)
-    //            {
-    //                moveTime += Time.deltaTime;
-    //                transform.position = Vector2.Lerp(startPos, endPos, moveTime / moveDuration);
-    //                yield return null;
-    //            }
-    //            break;
-    //        case "right":
-    //            moveTime = 0f;
-    //            startPos = transform.position;
-    //            endPos = new Vector3(startPos.x + .1f, transform.position.y, transform.position.z);
-
-    //            while (moveTime < moveDuration)
-    //            {
-    //                moveTime += Time.deltaTime;
-    //                transform.position = Vector2.Lerp(startPos, endPos, moveTime / moveDuration);
-    //            }
-    //            break;
-
-    //    }
+    //    isGrounded = true;
     //}
-    private void OnCollisionStay(Collision collision)
+    public bool IsGrounded()
     {
-        isGrounded = true;
-    }
+        Ray groundRay = new Ray(
+            new Vector3(controller.bounds.center.x,
+            (controller.bounds.center.y - controller.bounds.extents.y) + 0.2f,
+            controller.bounds.center.z),
+            Vector3.down);
 
+        //Debug.DrawRay(groundRay.origin, groundRay.direction, Color.cyan, 1.0f);
+        if(Physics.Raycast(groundRay, 0.2f + 0.1f))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public void SetSpeed(int modifier)
     {
         speed = 6.0f + modifier;
