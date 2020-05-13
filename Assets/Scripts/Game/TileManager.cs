@@ -25,6 +25,7 @@ public class TileManager : MonoBehaviour
 
         //grab size from renderer para sure & so its not hardcoded
         tileLength = standardSize.GetComponent<Renderer>().bounds.size.z;
+        Debug.Log("tile length bridge" + tileLength);
         spawnZ = -tileLength * 6;
         safeZone = tileLength * 2 ;
 
@@ -35,7 +36,7 @@ public class TileManager : MonoBehaviour
         //initialize first so player won't fall without anyone catching them
         for (int i = 0; i < tilesOnScreen; i++)
         {
-            if (i < 13)
+            if (i < 10)
                 SpawnTile(0);
             else
                 SpawnTile();

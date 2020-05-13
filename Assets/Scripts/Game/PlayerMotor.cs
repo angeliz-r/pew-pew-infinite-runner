@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     [SerializeField] private GameObject btnControls;
-
+    [SerializeField] private Score scoreScript;
+    [SerializeField] private PowerUps powerUpScript;
     //movement properties
     private CharacterController controller;
     private Vector3 moveVector;
@@ -122,7 +123,7 @@ public class PlayerMotor : MonoBehaviour
         //check gravity
         if (IsGrounded())
         {
-            verticalVelocity = -0.1f;
+            verticalVelocity = 0.1f;
 
             //jump can be in here
             //input button
@@ -145,12 +146,13 @@ public class PlayerMotor : MonoBehaviour
         controller.Move(moveVector * Time.deltaTime);
 
         //rotate when turning
-        Vector3 dir = controller.velocity;
-        if (dir != Vector3.zero)
-        {
-            dir.y = 0;
-            transform.forward = Vector3.Lerp(transform.forward, dir, TURN_SPEED);
-        }
+        
+        //Vector3 dir = controller.velocity;
+        //if (dir != Vector3.zero)
+        //{
+        //    dir.y = 0;
+        //    transform.forward = Vector3.Lerp(transform.forward, dir, TURN_SPEED);
+        //}
 
     }
 
@@ -201,11 +203,23 @@ public class PlayerMotor : MonoBehaviour
     }
 
     #region Player Death
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "OutZone")
         {
             Death();
+        }
+
+        if (other.gameObject.tag =="Coin")
+        {
+            Destroy(other.gameObject);
+            scoreScript.AddScore();
+        }
+
+        if(other.gameObject.tag =="Ammo")
+        {
+            Destroy(other.gameObject);
+            powerUpScript.AddAmmo();
         }
     }
     public void Death()

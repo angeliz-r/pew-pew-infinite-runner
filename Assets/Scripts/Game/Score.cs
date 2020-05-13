@@ -94,4 +94,10 @@ public class Score : MonoBehaviour
         }
     }
 
+    public void AddScore()
+    {
+        currentScore += 50;
+        //add score anim popup thing
+    }
+
 }
