@@ -221,6 +221,12 @@ public class PlayerMotor : MonoBehaviour
             Destroy(other.gameObject);
             powerUpScript.AddAmmo();
         }
+
+        if (other.gameObject.tag =="Slow")
+        {
+            Destroy(other.gameObject);
+            powerUpScript.SlowMotion();
+        }
     }
     public void Death()
     {

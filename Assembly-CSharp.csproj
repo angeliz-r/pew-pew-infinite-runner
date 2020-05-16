@@ -117,6 +117,7 @@
     <Compile Include="Assets\Scripts\Game\Shoot.cs" />
     <Compile Include="Assets\Scripts\Game\Swipe.cs" />
     <Compile Include="Assets\Scripts\Game\TileManager.cs" />
+    <Compile Include="Assets\Scripts\Game\TimeManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Save\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Save\SaveManager.cs" />
@@ -161,6 +162,15 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -182,6 +192,9 @@
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -190,18 +203,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder">
-      <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.Editor">
-      <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-      <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AddOns.Editor">
-      <HintPath>D:/Projects/GO-InfiniteRunner-Repo/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>G:/Programs/UnityInstalls/2019.3.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

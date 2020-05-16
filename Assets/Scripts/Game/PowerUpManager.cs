@@ -37,7 +37,7 @@ public class PowerUpManager : MonoBehaviour
         for (int i = 0; i < tilesOnScreen; i++)
         {
             if (i < 10)
-                SpawnTile(1);
+                SpawnTile(2);
             else
                 SpawnTile();
         }
@@ -45,12 +45,13 @@ public class PowerUpManager : MonoBehaviour
 
     void Update()
     {
+        /*
         if (playerTransform.position.z - safeZone > (spawnZ - tilesOnScreen * tileLength))
         {
             SpawnTile();
             //destroy the things catching the player when not needed anymore
             DeleteTile();
-        }
+        }*/
     }
 
     private void SpawnTile(int prefabIndex = -1)
