@@ -13,11 +13,11 @@ public class PowerUpManager : MonoBehaviour
 
     private float spawnZ = 0;
     private float tileLength;
-    private int tilesOnScreen = 10;
+    private int tilesOnScreen = 30;
     private float safeZone;
     private int lastPrefabIndex = 0;
-    private int i;
-    private Vector3 xval;
+    private int i, randomNumber;
+    //private Vector3 xval;
 
     [Header("Spawned Tiles")]
     public List<GameObject> activeTiles;
@@ -34,10 +34,11 @@ public class PowerUpManager : MonoBehaviour
 
     private void Start()
     {
+        randomNumber = RandomPrefabIndex();
         for (int i = 0; i < tilesOnScreen; i++)
         {
             if (i < 10)
-                SpawnTile(2);
+                SpawnTile(0);
             else
                 SpawnTile();
         }
@@ -45,32 +46,30 @@ public class PowerUpManager : MonoBehaviour
 
     void Update()
     {
-        /*
         if (playerTransform.position.z - safeZone > (spawnZ - tilesOnScreen * tileLength))
         {
             SpawnTile();
             //destroy the things catching the player when not needed anymore
             DeleteTile();
-        }*/
+        }
     }
 
     private void SpawnTile(int prefabIndex = -1)
     {
         GameObject go;
+        if (i > 10) //change type every 10
+        {
+            randomNumber = RandomPrefabIndex();
+            i = 0;
+        }
+
         if (prefabIndex == -1)
-            go = Instantiate(TilePrefabs[RandomPrefabIndex()]) as GameObject;
+            go = Instantiate(TilePrefabs[randomNumber]) as GameObject;
         else
             go = Instantiate(TilePrefabs[prefabIndex]) as GameObject;
         go.transform.SetParent(transform);
-
-        if (i < 10) //change lane every 10
-        {
-            RandomLaneSpawn();
-            i = 0;
-        }
         go.transform.position = new Vector3(-1, 0, 0);
         go.transform.position = Vector3.forward * spawnZ;
-        go.transform.position += xval * spawnZ;
         spawnZ += tileLength * 2; //spacing
         activeTiles.Add(go);
         i++;
@@ -86,17 +85,17 @@ public class PowerUpManager : MonoBehaviour
 
     private void RandomLaneSpawn()
     {
-        int randomInd = 0;
-        randomInd = Random.Range(-1, 1);
+        //int randomInd = 0;
+        //randomInd = Random.Range(-1, 1);
 
-        if (randomInd == -1)
-        {
-            xval = Vector3.left;
-        }
-        else if (randomInd == 1)
-        {
-            xval = Vector3.right;
-        }
+        //if (randomInd == -1)
+        //{
+        //    xval = Vector3.left;
+        //}
+        //else if (randomInd == 1)
+        //{
+        //    xval = Vector3.right;
+        //}
     }
     private int RandomPrefabIndex()
     {

@@ -59,7 +59,14 @@ public class PlayerMotor : MonoBehaviour
         else if (Time.timeSinceLevelLoad > animationDuration)
         {
             Movement();
-            btnControls.SetActive(true);
+            if (!GameManager.instance.isPaused)
+            {
+                btnControls.SetActive(true);
+            }
+            else if (!GameManager.instance.isPaused)
+            {
+                btnControls.SetActive(false);
+            }
         }
         if (isDead)
         {
@@ -231,6 +238,7 @@ public class PlayerMotor : MonoBehaviour
     public void Death()
     {
         isDead = true;
+        btnControls.SetActive(false);
     }
     #endregion
 }
