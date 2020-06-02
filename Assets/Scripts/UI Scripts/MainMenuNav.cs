@@ -5,28 +5,17 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class MainMenuNav : MonoBehaviour
 {
-    [SerializeField] private GameObject MainMenu;
-    [SerializeField] private GameObject Credits;
-    [SerializeField] private GameObject Exit;
-    [SerializeField] private TextMeshProUGUI ErrorMessage;
-    [SerializeField] private TMP_InputField userName;
-    [SerializeField] private GameObject warn;
+    public GameObject MainMenu;
+    public GameObject Credits;
+    public TextMeshProUGUI ErrorMessage;
+    public TMP_InputField userName;
+    public GameObject warn;
 
 
     public void OpenCredits()
     {
         Credits.SetActive(true);
         MainMenu.SetActive(false);
-        Exit.SetActive(false);
-    }
-
-    public void OpenExit()
-    {
-        Exit.SetActive(true);
-
-        Credits.SetActive(false);
-        MainMenu.SetActive(false);
-
     }
 
     public void OpenMainMenu()

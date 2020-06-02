@@ -11,6 +11,15 @@ public class MovingTileY : MonoBehaviour
     {
         speed = Random.Range(3, 6);
     }
+    private void Start()
+    {
+        EventManager.current.updateEvent += SidetoSide;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= SidetoSide;
+    }
     public void SidetoSide()
     {
         //move towards
@@ -32,12 +41,5 @@ public class MovingTileY : MonoBehaviour
         {
             isUp = true;
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        SidetoSide();
     }
 }

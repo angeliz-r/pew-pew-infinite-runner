@@ -13,10 +13,14 @@ public class EnemyProjectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    void Update()
+    private void Start()
     {
-        ProjectileLaunch();
+        EventManager.current.updateEvent += ProjectileLaunch;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= ProjectileLaunch;
     }
 
     public void ProjectileLaunch()

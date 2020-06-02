@@ -37,6 +37,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void Start()
     {
+        EventManager.current.updateEvent += UpdateTiles;
         coinRandomNumber = RandomPrefabIndex();
         specialRandomNumber = SpecialRandomPrefabIndex();
         for (int i = 0; i < tilesOnScreen; i++)
@@ -48,7 +49,12 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= UpdateTiles;
+    }
+
+    void UpdateTiles()
     {
         if (playerTransform.position.z - safeZone > (spawnZ - tilesOnScreen * tileLength))
         {

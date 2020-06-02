@@ -16,12 +16,17 @@ public class CameraMotor : MonoBehaviour
     private Vector3 animationOffset = new Vector3(0, 5, 5);
     private bool animDone;
 
-    void Start()
+    private void Start()
     {
         startOffset = transform.position - lookAt.position;
+        EventManager.current.updateEvent += UpdateCamera;
     }
 
-    void Update()
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= UpdateCamera;
+    }
+    void UpdateCamera()
     {
         moveVector = lookAt.position + startOffset; //camera pos = player pos
 

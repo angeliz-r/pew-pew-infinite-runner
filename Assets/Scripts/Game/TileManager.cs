@@ -33,6 +33,7 @@ public class TileManager : MonoBehaviour
 
     private void Start()
     {
+        EventManager.current.updateEvent += UpdateTiles;
         //initialize first so player won't fall without anyone catching them
         for (int i = 0; i < tilesOnScreen; i++)
         {
@@ -43,7 +44,12 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= UpdateTiles;
+    }
+
+    void UpdateTiles()
     {
         if (playerTransform.position.z - safeZone> (spawnZ - tilesOnScreen * tileLength))
         {

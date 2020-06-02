@@ -10,7 +10,17 @@ public class Shoot : MonoBehaviour {
     private float speed = 200f;
     private bool shoot;
 
-    void Update()
+    private void Start()
+    {
+        EventManager.current.updateEvent += ShootBullets;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= ShootBullets;
+    }
+
+    void ShootBullets()
     {
         if (shoot)
         {

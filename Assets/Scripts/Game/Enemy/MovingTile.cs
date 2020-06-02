@@ -10,6 +10,16 @@ public class MovingTile : MonoBehaviour
     {
         speed = Random.Range(3, 6);
     }
+
+    private void Start()
+    {
+        EventManager.current.updateEvent += SidetoSide;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= SidetoSide;
+    }
     public void SidetoSide ()
     {
         //move towards
@@ -31,12 +41,5 @@ public class MovingTile : MonoBehaviour
         {
             isRight = true;
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        SidetoSide();
     }
 }

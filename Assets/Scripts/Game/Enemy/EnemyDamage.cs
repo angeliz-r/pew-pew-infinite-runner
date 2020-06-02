@@ -8,11 +8,21 @@ public class EnemyDamage : MonoBehaviour
     public TextMeshPro healthAmt;
     public GameObject UIObject;
     //insert health num UI
-    void Update()
+
+    void UpdateHealth()
     {
         healthAmt.text = health.ToString();
     }
 
+    private void Start()
+    {
+        EventManager.current.updateEvent += UpdateHealth;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= UpdateHealth;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Projectile>())

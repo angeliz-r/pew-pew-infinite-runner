@@ -32,9 +32,17 @@ public class Score : MonoBehaviour
         menuScript = this.gameObject.GetComponent<PauseMenuNav>();
         CheckForHighScore();
     }
+    private void Start()
+    {
+        EventManager.current.updateEvent += UpdateScore;
+    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= UpdateScore;
+    }
+
+    void UpdateScore()
     {
         if (Time.timeSinceLevelLoad > 2.0f)
         {

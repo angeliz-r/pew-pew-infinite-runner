@@ -47,6 +47,15 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    private void Start()
+    {
+        EventManager.current.updateEvent += CheckPause;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= CheckPause;
+    }
     public PlayerData CopyToSaveData()
     {
         data.highScore = highScore;
@@ -61,17 +70,8 @@ public class GameManager : MonoBehaviour
         //playerName = data.playerName;
         //HSplayer = data.HSPlayer;
     }
-    public void Update()
+    void CheckPause()
     {
-        //scene = SceneManager.GetActiveScene();
-        //if (scene.buildIndex == 0)
-        //{
-        //    if (userName == null)
-        //        userName = GameObject.FindGameObjectWithTag("Input").GetComponent<TMP_InputField>();
-        //    EnterName();
-
-        //}
-            
         if (isPaused)
         {
             Time.timeScale = 0;

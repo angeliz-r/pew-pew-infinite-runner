@@ -2315,6 +2315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1514112132}
   - component: {fileID: 1514112131}
+  - component: {fileID: 1514112135}
   - component: {fileID: 1514112133}
   - component: {fileID: 1514112134}
   m_Layer: 0
@@ -2337,9 +2338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highScore: 0
-  userName: {fileID: 514429447}
-  playerName: 
-  HSplayer: 
   isPaused: 0
 --- !u!4 &1514112132
 Transform:
@@ -2460,6 +2458,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514112130}
   m_Enabled: 1
+--- !u!114 &1514112135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514112130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0496a72243e54e498e63c2f8e677418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1594592244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2816,7 +2826,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 49117898}
   Credits: {fileID: 0}
-  Exit: {fileID: 0}
   ErrorMessage: {fileID: 867815127}
   userName: {fileID: 514429447}
   warn: {fileID: 1053673655}

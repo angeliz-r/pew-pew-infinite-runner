@@ -16,9 +16,15 @@ public class EnemyShoot : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(ShootProjectile());
     }
-    void Update()
+
+    private void Start()
     {
-        CalculateDistance();
+        EventManager.current.updateEvent += CalculateDistance;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= CalculateDistance;
     }
 
     void CalculateDistance()

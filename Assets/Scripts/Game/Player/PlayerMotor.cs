@@ -8,11 +8,11 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] private GameObject btnControls;
     [SerializeField] private Score scoreScript;
     [SerializeField] private PowerUps powerUpScript;
+
     //movement properties
     private CharacterController controller;
     private Vector3 moveVector;
     private Vector3 targetPos;
-
 
     private int desiredLane = 1; //left = 0, middle = 1, right = 2
     private float speed;
@@ -45,7 +45,17 @@ public class PlayerMotor : MonoBehaviour
         //swipeScript = this.GetComponent<Swipe>();
     }
 
-    void Update()
+    private void Start()
+    {
+        EventManager.current.updateEvent += UpdatePlayerMovement;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.current.updateEvent -= UpdatePlayerMovement;
+    }
+
+    void UpdatePlayerMovement()
     {
         //restrict
         if (Time.timeSinceLevelLoad < animationDuration)
@@ -123,6 +133,7 @@ public class PlayerMotor : MonoBehaviour
         {
             targetPos += Vector3.right * LANE_DIST;
         }
+
         //move smoothly
         moveVector = Vector3.zero;
         moveVector.x = (targetPos - transform.position).normalized.x * speed;
