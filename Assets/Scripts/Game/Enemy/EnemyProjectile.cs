@@ -33,7 +33,7 @@ public class EnemyProjectile : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         DestroyProjectile();
     }

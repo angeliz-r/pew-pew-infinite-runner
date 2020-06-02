@@ -5,20 +5,21 @@ using TMPro;
 public class EnemyDamage : MonoBehaviour
 {
     public int health;
-    //[SerializeField] private TextMeshProUGUI healthAmt;
+    public TextMeshPro healthAmt;
+    public GameObject UIObject;
     //insert health num UI
     void Update()
     {
-
+        healthAmt.text = health.ToString();
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (other.GetComponent<Projectile>())
         {
             if (health > 0)
             {
                 --health;
-
             }
             else
             {
@@ -30,6 +31,7 @@ public class EnemyDamage : MonoBehaviour
     void DestroyObject()
     {
         //Instantiate(destroyEffect, transform.position, Quaternion.identity);
+        Destroy(UIObject);
         Destroy(gameObject);
 
     }

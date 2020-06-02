@@ -3,8 +3,8 @@
 public class TimeManager : MonoBehaviour
 {
 
-    public float slowdownFactor = 0.05f;
-    public float slowdownDuration = 4f;
+    public float slowdownFactor = 0.02f;
+    public float slowdownDuration = 1f;
 
     private void Update()
     {

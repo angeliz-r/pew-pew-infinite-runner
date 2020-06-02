@@ -87,6 +87,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -131,11 +132,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2945805040303519404}
     m_Modifications:
-    - target: {fileID: 7356075361626483110, guid: 41fed6d5dd11c89429205fb0dafff5c0,
-        type: 3}
-      propertyPath: m_Name
-      value: OutzoneColliders
-      objectReference: {fileID: 0}
     - target: {fileID: 931682353856362638, guid: 41fed6d5dd11c89429205fb0dafff5c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -195,6 +191,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 15.408645
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356075361626483110, guid: 41fed6d5dd11c89429205fb0dafff5c0,
+        type: 3}
+      propertyPath: m_Name
+      value: OutzoneColliders
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41fed6d5dd11c89429205fb0dafff5c0, type: 3}

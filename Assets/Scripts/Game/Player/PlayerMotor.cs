@@ -110,7 +110,7 @@ public class PlayerMotor : MonoBehaviour
         //rb.MovePosition(rb.position + moveVector * speed * Time.fixedDeltaTime);
         #endregion
         //determine where to move
-         
+
         //move forward
         targetPos = transform.position.z * Vector3.forward;
 
@@ -146,8 +146,6 @@ public class PlayerMotor : MonoBehaviour
         }
         moveVector.y =verticalVelocity;
         moveVector.z = speed;
-
-
 
         //move player
         controller.Move(moveVector * Time.deltaTime);
@@ -209,7 +207,7 @@ public class PlayerMotor : MonoBehaviour
         speed = 6.0f + modifier;
     }
 
-    #region Player Death
+    #region Player Trigger
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "OutZone")
@@ -217,22 +215,24 @@ public class PlayerMotor : MonoBehaviour
             Death();
         }
 
-        if (other.gameObject.tag =="Coin")
+        else if (other.GetComponent<PowerUpType>())
         {
-            Destroy(other.gameObject);
-            scoreScript.AddScore();
-        }
+            if (other.GetComponent<PowerUpType>().state == PowerupType.COIN)
+            {
+                Destroy(other.gameObject);
+                scoreScript.AddScore();
+            }
+            else if (other.GetComponent<PowerUpType>().state == PowerupType.AMMO)
+            {
+                Destroy(other.gameObject);
+                powerUpScript.AddAmmo();
+            }
+            else if (other.GetComponent<PowerUpType>().state == PowerupType.SLOW)
+            {
+                Destroy(other.gameObject);
+                powerUpScript.SlowMotion();
+            }
 
-        if(other.gameObject.tag =="Ammo")
-        {
-            Destroy(other.gameObject);
-            powerUpScript.AddAmmo();
-        }
-
-        if (other.gameObject.tag =="Slow")
-        {
-            Destroy(other.gameObject);
-            powerUpScript.SlowMotion();
         }
     }
     public void Death()

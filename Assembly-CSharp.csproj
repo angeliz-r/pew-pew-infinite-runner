@@ -109,12 +109,13 @@
     <Compile Include="Assets\Scripts\Game\Enemy\EnemyShoot.cs" />
     <Compile Include="Assets\Scripts\Game\Enemy\MovingTile.cs" />
     <Compile Include="Assets\Scripts\Game\Enemy\MovingTileY.cs" />
-    <Compile Include="Assets\Scripts\Game\PlayerMotor.cs" />
+    <Compile Include="Assets\Scripts\Game\Player\PlayerMotor.cs" />
+    <Compile Include="Assets\Scripts\Game\Player\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Game\Player\Shoot.cs" />
     <Compile Include="Assets\Scripts\Game\PowerUpManager.cs" />
+    <Compile Include="Assets\Scripts\Game\PowerUpType.cs" />
     <Compile Include="Assets\Scripts\Game\PowerUps.cs" />
-    <Compile Include="Assets\Scripts\Game\Projectile.cs" />
     <Compile Include="Assets\Scripts\Game\Score.cs" />
-    <Compile Include="Assets\Scripts\Game\Shoot.cs" />
     <Compile Include="Assets\Scripts\Game\Swipe.cs" />
     <Compile Include="Assets\Scripts\Game\TileManager.cs" />
     <Compile Include="Assets\Scripts\Game\TimeManager.cs" />
