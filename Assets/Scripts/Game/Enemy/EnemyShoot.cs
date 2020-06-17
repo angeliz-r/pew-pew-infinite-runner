@@ -8,23 +8,23 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private GameObject bullet;
     private bool shoot;
     private GameObject player;
-    public float minDistance;
+    private float minDistance = 10;
 
 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+    }
+
+    void Start()
+    {
         StartCoroutine(ShootProjectile());
     }
 
-    private void Start()
+    void Update()
     {
-        EventManager.current.updateEvent += CalculateDistance;
-    }
-
-    private void OnDestroy()
-    {
-        EventManager.current.updateEvent -= CalculateDistance;
+        CalculateDistance();
     }
 
     void CalculateDistance()

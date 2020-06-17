@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -180,7 +180,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 79f1ac36e01d9154480ba9209096319d, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 46675643}
   m_subTextObjects:
   - {fileID: 0}
@@ -351,7 +351,7 @@ Transform:
   m_GameObject: {fileID: 274880433}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.122449, y: 7.122449, z: 7.122449}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2055359467}
   m_RootOrder: 1
@@ -395,7 +395,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 965aa98323768a04ca706cc025370846, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -560,6 +560,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 6_Tile_Ymovesmallbridge
       objectReference: {fileID: 0}
+    - target: {fileID: 9205970257846208216, guid: b931b53c1d49e1c49aece21612c7eb2b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b931b53c1d49e1c49aece21612c7eb2b, type: 3}
 --- !u!1001 &1425345824
@@ -624,6 +629,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6565218640935423211, guid: 0319f9e4021ff3d4f81d8e245e3103a3,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8070880528470786257, guid: 0319f9e4021ff3d4f81d8e245e3103a3,
         type: 3}
       propertyPath: m_Mesh
@@ -633,6 +643,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 4_Tile_bridge_rblock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645066660130181464, guid: 0319f9e4021ff3d4f81d8e245e3103a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0319f9e4021ff3d4f81d8e245e3103a3, type: 3}
@@ -707,6 +722,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 5_Tile_SSmovesmallbridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279131135516663901, guid: 31c34ef6580355140bcbe15720e17636,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31c34ef6580355140bcbe15720e17636, type: 3}
@@ -874,6 +894,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3_Tile_bridge_lblock
       objectReference: {fileID: 0}
+    - target: {fileID: 3770604835778684518, guid: a8a675e71190c6c4fa33a4a201e20664,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666022701209183050, guid: a8a675e71190c6c4fa33a4a201e20664,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8a675e71190c6c4fa33a4a201e20664, type: 3}
 --- !u!1001 &1953065268
@@ -887,6 +917,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 1_Tile_smallbridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846299159237651517, guid: 9e3eb9cbe333c5843a24eb3229961d90,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2945805040303519404, guid: 9e3eb9cbe333c5843a24eb3229961d90,
         type: 3}
@@ -1043,6 +1078,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 0_Tile_largebridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832598210255551066, guid: 6d72fe57a132be6469b87704f317177c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d72fe57a132be6469b87704f317177c, type: 3}
@@ -1362,6 +1402,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2_Tile_bridge_bblock
       objectReference: {fileID: 0}
+    - target: {fileID: 4419963535592181914, guid: 79cadbb9b480c854bba9fa1a5316483e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7437205643630875860, guid: 79cadbb9b480c854bba9fa1a5316483e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1579,6 +1624,32 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 887618831581084635, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 79f1ac36e01d9154480ba9209096319d,
+        type: 2}
+    - target: {fileID: 887618831581084635, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 887618831581084635, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 887618831581084635, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 887618831581084635, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1281536571956217367, guid: 561bf993ceb8ba246b28f38debe5694c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1639,6 +1710,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: 7_Tile_bridge_rEblock
       objectReference: {fileID: 0}
+    - target: {fileID: 5451731537896637017, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459872998017596799, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459872998017596799, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459872998017596799, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096806700882020565, guid: 561bf993ceb8ba246b28f38debe5694c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 965aa98323768a04ca706cc025370846,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 561bf993ceb8ba246b28f38debe5694c, type: 3}
 --- !u!1001 &6284559237434405106
@@ -1999,10 +2096,62 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3500549952075915690, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 965aa98323768a04ca706cc025370846,
+        type: 3}
+    - target: {fileID: 6854001945877173402, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6854001945877173402, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6854001945877173402, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391117636425044412, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 79f1ac36e01d9154480ba9209096319d,
+        type: 2}
+    - target: {fileID: 7391117636425044412, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391117636425044412, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391117636425044412, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391117636425044412, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7928897840292787452, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
         type: 3}
       propertyPath: m_Name
       value: 8_Tile_bridge_lEblock
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928897840292787452, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7928897840292787453, guid: c8cd05d6eaaf2344c833f5d1ff53709c,
         type: 3}

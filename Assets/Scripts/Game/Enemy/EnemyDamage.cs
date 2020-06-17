@@ -31,7 +31,7 @@ public class EnemyDamage : MonoBehaviour
             {
                 --health;
             }
-            else
+            if (health == 1)
             {
                 DestroyObject();
             }
@@ -42,7 +42,7 @@ public class EnemyDamage : MonoBehaviour
     {
         //Instantiate(destroyEffect, transform.position, Quaternion.identity);
         Destroy(UIObject);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
 
     }
 

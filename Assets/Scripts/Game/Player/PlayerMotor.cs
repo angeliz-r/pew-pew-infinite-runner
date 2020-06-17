@@ -17,7 +17,7 @@ public class PlayerMotor : MonoBehaviour
     private int desiredLane = 1; //left = 0, middle = 1, right = 2
     private float speed;
     private const float TURN_SPEED = .6f;
-    private const float LANE_DIST = 1.2f;
+    private const float LANE_DIST = 1.5f;
 
     //jump things
     //private float jumpForce = 3.0f;
