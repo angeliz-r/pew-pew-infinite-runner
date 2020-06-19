@@ -47,14 +47,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    void Update()
     {
-        EventManager.current.updateEvent += CheckPause;
-    }
-
-    private void OnDestroy()
-    {
-        EventManager.current.updateEvent -= CheckPause;
+        CheckPause();
     }
     public PlayerData CopyToSaveData()
     {

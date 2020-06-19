@@ -6,15 +6,6 @@ public class Projectile : MonoBehaviour
 {
     private float _speed = 100f;
 
-    private void Start()
-    {
-        EventManager.current.updateEvent += ProjectileLaunch;
-    }
-
-    private void OnDestroy()
-    {
-        EventManager.current.updateEvent -= ProjectileLaunch;
-    }
     void Update()
     {
         ProjectileLaunch();

@@ -8,19 +8,20 @@ public class EnemyProjectile : MonoBehaviour
     private GameObject player;
     private Rigidbody rb;
 
-    void Awake()
+    void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        FindPlayer();
     }
-    private void Start()
+    void FindPlayer()
     {
-        EventManager.current.updateEvent += ProjectileLaunch;
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    private void OnDestroy()
+    void Update()
     {
-        EventManager.current.updateEvent -= ProjectileLaunch;
+        FindPlayer();
+        ProjectileLaunch();
     }
 
     public void ProjectileLaunch()

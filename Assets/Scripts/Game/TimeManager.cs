@@ -4,7 +4,7 @@ public class TimeManager : MonoBehaviour
 {
 
     public float slowdownFactor = 0.02f;
-    public float slowdownDuration = 1f;
+    public float slowdownDuration = .5f;
 
     private void Update()
     {

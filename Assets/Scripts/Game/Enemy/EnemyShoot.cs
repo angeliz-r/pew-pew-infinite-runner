@@ -11,10 +11,9 @@ public class EnemyShoot : MonoBehaviour
     private float minDistance = 10;
 
 
-    void Awake()
+    void OnEnable()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-
+        FindPlayer();
     }
 
     void Start()
@@ -25,20 +24,30 @@ public class EnemyShoot : MonoBehaviour
     void Update()
     {
         CalculateDistance();
+        FindPlayer();
     }
 
+    void FindPlayer()
+    {
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+    }
     void CalculateDistance()
     {
-        float distance = Vector3.Distance(player.transform.position, transform.position);
+        if (player !=null)
+        {
+            //float distance = Vector3.Distance(player.transform.position, transform.position);
 
-        if (distance < minDistance)
-        {
-            shoot = true;
+            //if (distance < minDistance)
+           //{
+                shoot = true;
+           // }
+           //else
+           // {
+           //     shoot = false;
+          //  }
         }
-        else
-        {
-            shoot = false;
-        }
+
     }
     IEnumerator ShootProjectile()
     {

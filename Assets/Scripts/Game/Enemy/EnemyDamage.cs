@@ -31,7 +31,7 @@ public class EnemyDamage : MonoBehaviour
             {
                 --health;
             }
-            if (health == 1)
+            if (health == 0)
             {
                 DestroyObject();
             }
