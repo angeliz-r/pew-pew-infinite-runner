@@ -11,6 +11,10 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private GameObject standardSize;
 
+
+    [Header("ScoreManager")]
+    public Score scoreManager;
+
     private float spawnZ;
     private float tileLength;
     private int tilesOnScreen = 16;
@@ -88,7 +92,19 @@ public class TileManager : MonoBehaviour
         int randomIndex = 0;
         while(randomIndex == lastPrefabIndex) //randomize w/o repeating
         {
-            randomIndex = Random.Range(0, TilePrefabs.Length); 
+            //randomize depending on higher score
+            if (scoreManager.GetScore() <=  300)
+            {
+                randomIndex = Random.Range(0, 5);
+            }
+            if (scoreManager.GetScore() > 300)
+            {
+                randomIndex = Random.Range(0, 10);
+            }
+            if (scoreManager.GetScore() > 600)
+            {
+                randomIndex = Random.Range(0, TilePrefabs.Length);
+            }
         }
         lastPrefabIndex = randomIndex;
         return randomIndex;

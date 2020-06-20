@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3545882017728156678}
   - component: {fileID: 3545882017728156679}
   - component: {fileID: 3545882017728156676}
-  - component: {fileID: 3545882017728156677}
+  - component: {fileID: 45268043929911909}
   m_Layer: 0
   m_Name: smallbridge
   m_TagString: Untagged
@@ -112,7 +112,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3545882017728156677
+--- !u!65 &45268043929911909
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

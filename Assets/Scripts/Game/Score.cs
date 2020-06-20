@@ -44,7 +44,7 @@ public class Score : MonoBehaviour
 
     void UpdateScore()
     {
-        if (Time.timeSinceLevelLoad > 2.0f)
+        if (Time.timeSinceLevelLoad > 4.0f)
         {
             if (playerScript.isDead)
             {
@@ -80,11 +80,7 @@ public class Score : MonoBehaviour
 
     private void PlayerDeath()
     {
-        menuScript.RetryGame();
-        highScoreRetryText.text = ((int)currentScore).ToString();
-        GameManager.instance.CompareScores((int)currentScore);
-        highScoreText.text = GameManager.instance.GetHighScore().ToString();
-        SaveManager.instance.Save();
+        StartCoroutine(Wait());
     }
 
     private void CheckForHighScore()
@@ -108,4 +104,19 @@ public class Score : MonoBehaviour
         //add score anim popup thing
     }
 
+    public float GetScore()
+    {
+        return currentScore;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(.5f);
+        menuScript.RetryGame();
+        highScoreRetryText.text = ((int)currentScore).ToString();
+        GameManager.instance.CompareScores((int)currentScore);
+        highScoreText.text = GameManager.instance.GetHighScore().ToString();
+        SaveManager.instance.Save();
+        StopCoroutine(Wait());
+    }
 }

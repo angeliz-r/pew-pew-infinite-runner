@@ -7,6 +7,7 @@ public class EnemyDamage : MonoBehaviour
     public int health;
     public TextMeshPro healthAmt;
     public GameObject UIObject;
+    public GameObject destroyEffect;
     //insert health num UI
 
     void UpdateHealth()
@@ -40,7 +41,7 @@ public class EnemyDamage : MonoBehaviour
 
     void DestroyObject()
     {
-        //Instantiate(destroyEffect, transform.position, Quaternion.identity);
+        GameObject go = Instantiate(destroyEffect, transform.position, Quaternion.identity);
         Destroy(UIObject);
         Destroy(this.gameObject);
 

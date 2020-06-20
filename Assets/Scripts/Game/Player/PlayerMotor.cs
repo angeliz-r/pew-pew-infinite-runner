@@ -8,6 +8,7 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] private GameObject btnControls;
     [SerializeField] private Score scoreScript;
     [SerializeField] private PowerUps powerUpScript;
+    public GameObject playerDeathEffect;
 
     //movement properties
     private CharacterController controller;
@@ -35,7 +36,7 @@ public class PlayerMotor : MonoBehaviour
     //death
     public bool isDead = false;
 
-    private float animationDuration = 2.0f;
+    private float animationDuration = 4.0f;
 
     void Awake()
     {
@@ -81,6 +82,10 @@ public class PlayerMotor : MonoBehaviour
         if (isDead)
         {
             return;
+        }
+        if (verticalVelocity < -2)
+        {
+           Death();
         }
 
     }
@@ -215,7 +220,7 @@ public class PlayerMotor : MonoBehaviour
     }
     public void SetSpeed(int modifier)
     {
-        speed = 6.0f + modifier;
+        speed = 4.0f + modifier;
     }
 
     #region Player Trigger
@@ -250,6 +255,8 @@ public class PlayerMotor : MonoBehaviour
     {
         isDead = true;
         btnControls.SetActive(false);
+        GameObject go = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
+
     }
     #endregion
 }

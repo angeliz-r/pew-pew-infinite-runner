@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5965482233188806592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 6}
+  m_LocalPosition: {x: 1.45, y: 0, z: 6}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children:
   - {fileID: 5965482233875411857}
@@ -411,6 +411,8 @@ MonoBehaviour:
   health: 1
   healthAmt: {fileID: 887618831581084635}
   UIObject: {fileID: 6322403782083506103}
+  destroyEffect: {fileID: 6297075267058104428, guid: 196f58fa904b6b24c962e95b541b7373,
+    type: 3}
 --- !u!1 &5965482233875411870
 GameObject:
   m_ObjectHideFlags: 0

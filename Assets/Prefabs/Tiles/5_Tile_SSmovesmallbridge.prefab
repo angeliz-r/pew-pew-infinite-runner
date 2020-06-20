@@ -458,6 +458,8 @@ MonoBehaviour:
   health: 1
   healthAmt: {fileID: 8351590458110934803}
   UIObject: {fileID: 7655855298951572652}
+  destroyEffect: {fileID: 6297075267058104428, guid: 196f58fa904b6b24c962e95b541b7373,
+    type: 3}
 --- !u!1 &8279131135516663901
 GameObject:
   m_ObjectHideFlags: 0
