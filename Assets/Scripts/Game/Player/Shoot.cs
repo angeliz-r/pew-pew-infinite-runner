@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour {
 
-    public int ammo = 40;
+    public int ammo = 20;
     [SerializeField] private GameObject bullet;
     public GameObject secondOrigin;
     private float speed = 200f;

@@ -129,7 +129,7 @@
     <Compile Include="Assets\Scripts\SceneTravel\LoaderCallback.cs" />
     <Compile Include="Assets\Scripts\SceneTravel\LoadingProgressBar.cs" />
     <Compile Include="Assets\Scripts\Tween\Bounce.cs" />
-    <Compile Include="Assets\Scripts\Tween\SideToSideTween.cs" />
+    <Compile Include="Assets\Scripts\Tween\ScoreFloat.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\AnimateMainMenuButton.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\DisplayAmmoCount.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\DisplayHighScoreMenu.cs" />

@@ -21,11 +21,12 @@ public class DisplayAmmoCount : MonoBehaviour
     {
         if (shootProjectile.ammo > 0)
         {
+            ammoDisplay.color = Color.white;
             ammoDisplay.text = "x" + shootProjectile.ammo.ToString();
         }
-        else
+        else if (shootProjectile.ammo < 10)
         {
-            ammoDisplay.text = "x0";
+            //ammoDisplay.text = "x0";
             ammoDisplay.color = Color.red;
         }
 

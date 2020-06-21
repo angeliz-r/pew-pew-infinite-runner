@@ -44,6 +44,7 @@ public class PlayerMotor : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
         //swipeScript = this.GetComponent<Swipe>();
+        //controller.isTrigger = true;
     }
 
     private void Start()
@@ -83,7 +84,7 @@ public class PlayerMotor : MonoBehaviour
         {
             return;
         }
-        if (verticalVelocity < -2)
+        if (this.transform.position.y < -1.5)
         {
            Death();
         }
@@ -236,7 +237,7 @@ public class PlayerMotor : MonoBehaviour
             if (other.GetComponent<PowerUpType>().state == PowerupType.COIN)
             {
                 Destroy(other.gameObject);
-                scoreScript.AddScore();
+                scoreScript.AddScore(5);
             }
             else if (other.GetComponent<PowerUpType>().state == PowerupType.AMMO)
             {

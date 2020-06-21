@@ -103,6 +103,10 @@ public class TileManager : MonoBehaviour
             }
             if (scoreManager.GetScore() > 600)
             {
+                randomIndex = Random.Range(0, 14);
+            }
+            if (scoreManager.GetScore() > 900)
+            {
                 randomIndex = Random.Range(0, TilePrefabs.Length);
             }
         }
